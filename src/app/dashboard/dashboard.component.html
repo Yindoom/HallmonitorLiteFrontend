@@ -1,0 +1,63 @@
+<mat-form-field id="left">
+    <mat-label>Devices</mat-label>
+    <mat-select>
+        <mat-option *ngFor="let device of deviceList" [value]="device">
+            {{device}}
+        </mat-option>
+    </mat-select>
+</mat-form-field>
+
+<br>
+
+<div>
+    <mat-form-field>
+        <input matInput [matDatepicker]="picker1" placeholder="Choose a from date">
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput [matDatepicker]="picker2" placeholder="Choose a to date">
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+    </mat-form-field>
+    <br>
+
+    <label>Pick a from time</label>
+    <br>
+    <mat-form-field>
+        <mat-select placeholder="Hours">
+            <mat-option *ngFor="let hour of hours" [value]="hour">
+                {{hour}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-select placeholder="Minutes">
+            <mat-option *ngFor="let minute of minutes" [value]='minute'>
+                {{minute}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <br>
+
+    <label>Pick a to time</label>
+    <br>
+    <mat-form-field>
+        <mat-select placeholder="Hours">
+            <mat-option *ngFor="let hour of hours" [value]="hour">
+                {{hour}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-select placeholder="Minutes">
+            <mat-option *ngFor="let minute of minutes" [value]='minute'>
+                {{minute}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <br>
+    <img src="https://i.imgur.com/kB6wkFj.png" />
+</div>
