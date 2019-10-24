@@ -2,11 +2,26 @@ mat-sidenav-container {
   height: 100%;
 }
 
-mat-sidenav-content, mat-sidenav {
+mat-sidenav-content,
+mat-sidenav {
   padding: 16px;
+  height: 100%;
 }
 
 mat-sidenav {
   background-color: lightcoral;
   width: 200px;
+  
+}
+
+.rotate {
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
+.logout {
+  width: 100%;
 }
