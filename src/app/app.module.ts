@@ -22,6 +22,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatIconModule } from '@angular/material/icon';
 import { SidenavService } from './services/sidenav.service';
 import { HttpClientModule } from '@angular/common/http';
+import { BarChartComponent } from './bar-chart/bar-chart.component';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,8 @@ import { HttpClientModule } from '@angular/common/http';
     LoginComponent,
     FooterComponent,
     NavbarComponent,
-    DashboardComponent
+    DashboardComponent,
+    BarChartComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +51,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatDatepickerModule,
     MatNativeDateModule,
     MatIconModule,
-    HttpClientModule
+    HttpClientModule,
+    ChartsModule
   ],
   providers: [SidenavService],
   bootstrap: [AppComponent]

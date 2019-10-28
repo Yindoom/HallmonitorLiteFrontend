@@ -1,47 +1,38 @@
 <button mat-raised-button (click)="toggleNav()">
-   <mat-icon>menu_open</mat-icon>
+  <mat-icon>menu_open</mat-icon>
 </button>
 <br>
-<mat-form-field id="left">
-    <mat-label>Devices</mat-label>
-    <mat-select>
-        <mat-option *ngFor="let device of deviceList" [value]="device">
-            {{device}}
-        </mat-option>
-    </mat-select>
-</mat-form-field>
 
-<br>
-
-<div style="width: 50%;">
+  <div id="timeChoosers">
     <mat-form-field>
-        <input matInput [matDatepicker]="picker1" placeholder="Choose a from date">
-        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-        <mat-datepicker #picker1></mat-datepicker>
+      <input matInput [matDatepicker]="picker1" placeholder="Choose a from date">
+      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+      <mat-datepicker #picker1></mat-datepicker>
     </mat-form-field>
 
     <mat-form-field>
-        <input matInput [matDatepicker]="picker2" placeholder="Choose a to date">
-        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-        <mat-datepicker #picker2></mat-datepicker>
+      <input matInput [matDatepicker]="picker2" placeholder="Choose a to date">
+      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+      <mat-datepicker #picker2></mat-datepicker>
     </mat-form-field>
+
     <br>
 
     <label>Pick a from time</label>
     <br>
     <mat-form-field>
-        <mat-select placeholder="Hours">
-            <mat-option *ngFor="let hour of hours" [value]="hour">
-                {{hour}}
-            </mat-option>
-        </mat-select>
+      <mat-select placeholder="Hours">
+        <mat-option *ngFor="let hour of hours" [value]="hour">
+          {{hour}}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
     <mat-form-field>
-        <mat-select placeholder="Minutes">
-            <mat-option *ngFor="let minute of minutes" [value]='minute'>
-                {{minute}}
-            </mat-option>
-        </mat-select>
+      <mat-select placeholder="Minutes">
+        <mat-option *ngFor="let minute of minutes" [value]='minute'>
+          {{minute}}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
 
     <br>
@@ -49,21 +40,29 @@
     <label>Pick a to time</label>
     <br>
     <mat-form-field>
-        <mat-select placeholder="Hours">
-            <mat-option *ngFor="let hour of hours" [value]="hour">
-                {{hour}}
-            </mat-option>
-        </mat-select>
+      <mat-select placeholder="Hours">
+        <mat-option *ngFor="let hour of hours" [value]="hour">
+          {{hour}}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
     <mat-form-field>
-        <mat-select placeholder="Minutes">
-            <mat-option *ngFor="let minute of minutes" [value]='minute'>
-                {{minute}}
-            </mat-option>
-        </mat-select>
+      <mat-select placeholder="Minutes">
+        <mat-option *ngFor="let minute of minutes" [value]='minute'>
+          {{minute}}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
-    <br>
-</div>
+  </div>
+
+    <div id="deviceList">
+      <mat-selection-list>
+        <mat-list-option *ngFor="let device of devices">
+          {{device}}
+        </mat-list-option>
+      </mat-selection-list>
+    </div>
+
 
 <button (click)="getDeviceOutputs()">Get device outputs</button>
 <div *ngIf="outputs">
@@ -72,4 +71,7 @@
       {{output.id}}
     </li>
   </ul>
+</div>
+<div>
+  <app-bar-chart></app-bar-chart>
 </div>

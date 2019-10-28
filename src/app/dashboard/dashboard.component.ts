@@ -10,7 +10,7 @@ import {DeviceOutput} from '../shared/models/deviceOutput';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  deviceList = ['apple', 'orange', 'pkfire', 'hm'];
+  devices = ['apple', 'orange', 'pkfire', 'hm', 'apple', 'orange', 'pkfire', 'hm', 'apple', 'orange', 'pkfire', 'hm'];
 
   outputs: Observable<DeviceOutput[]>;
   hours = [

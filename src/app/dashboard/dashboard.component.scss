@@ -1,12 +1,29 @@
 mat-form-field {
-    padding: 5px;
-    text-align: center;
+  padding: 5px;
+  text-align: center;
 }
 
-#left {
-    text-align: left;
+#right {
+  text-align: right;
 }
 
 div {
-    text-align: center;
+  text-align: center;
+  // margin: 0 auto;
+}
+
+#deviceList {
+  max-height:225px;
+  overflow: scroll;
+}
+
+#timeChoosers {
+  float: right;
+}
+
+#timeChoosers, #deviceList {
+  width: 45%;
+  height:230px;
+  margin: 10px;
+  border: 1px dotted #fd9fb3;
 }
