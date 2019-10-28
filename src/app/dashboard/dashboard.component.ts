@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SidenavService } from '../services/sidenav.service';
+import {DeviceOutputService} from '../services/model-services/device-output.service';
+import {Observable} from 'rxjs';
+import {DeviceOutput} from '../shared/models/deviceOutput';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,6 +12,7 @@ import { SidenavService } from '../services/sidenav.service';
 export class DashboardComponent implements OnInit {
   deviceList = ['apple', 'orange', 'pkfire', 'hm'];
 
+  outputs: Observable<DeviceOutput[]>;
   hours = [
     1,
     2,
@@ -36,13 +40,18 @@ export class DashboardComponent implements OnInit {
     24
   ];
 
-  minutes = [0, 10, 20, 30, 40, 50];
+  minutes = [0, 30];
 
-  constructor(private navService: SidenavService) { }
+  constructor(private navService: SidenavService,
+              private deviceOutputService: DeviceOutputService) { }
 
   ngOnInit() {}
 
   toggleNav() {
     this.navService.toggleNav();
+  }
+
+  getDeviceOutputs(){
+    this.outputs = this.deviceOutputService.getDeviceOutputs();
   }
 }
