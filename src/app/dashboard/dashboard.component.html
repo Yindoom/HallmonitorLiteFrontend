@@ -1,19 +1,21 @@
 <button mat-raised-button (click)="toggleNav()">
-   <mat-icon>menu_open</mat-icon>
+    <mat-icon>menu_open</mat-icon>
 </button>
 <br>
-<mat-form-field id="left">
-    <mat-label>Devices</mat-label>
-    <mat-select>
-        <mat-option *ngFor="let device of deviceList" [value]="device">
-            {{device}}
-        </mat-option>
-    </mat-select>
-</mat-form-field>
+<div style="width: 50%;">
+    <mat-form-field id="left">
+        <mat-label>Devices</mat-label>
+        <mat-select>
+            <mat-option *ngFor="let device of deviceList" [value]="device">
+                {{device}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+</div>
 
 <br>
 
-<div style="width: 50%;">
+<div>
     <mat-form-field>
         <input matInput [matDatepicker]="picker1" placeholder="Choose a from date">
         <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
