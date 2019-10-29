@@ -15,10 +15,10 @@ export class BarChartComponent implements OnInit {
     scaleShowVerticalLines: false,
     responsive: true
   };
-  public barChartLabels = []; //fill array with dates
+  public barChartLabels = []; // fill array with dates
   public barChartType = 'bar';
   public barChartLegend = true;
-  public barChartData = [{data: [], label: 'nr Of People'}, //fill with nr. of ppl
+  public barChartData = [{data: [], label: 'nr Of People'}, // fill with nr. of ppl
     // {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'}
   ];
 

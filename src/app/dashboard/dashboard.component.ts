@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { SidenavService } from '../services/sidenav.service';
 import {DeviceOutputService} from '../services/model-services/device-output.service';
 import {Observable} from 'rxjs';
-import {DeviceOutput} from '../shared/models/deviceOutput';
+import {DeviceOutput} from '../shared/models/deviceOutput.model';
 import {DeviceService} from '../services/model-services/device.service';
-import {Device} from '../shared/models/device';
-import {User} from '../shared/models/user';
+import {Device} from '../shared/models/device.model';
+import {User} from '../shared/models/user.model';
 import {UserService} from '../services/model-services/user.service';
 
 @Component({
@@ -59,7 +59,7 @@ export class DashboardComponent implements OnInit {
     this.navService.toggleNav();
   }
 
-  getDeviceOutputs(){
+  getDeviceOutputs() {
    // this.outputs = this.deviceOutputService.getDeviceOutputs();
    // this.devices = this.deviceService.getDevices();
     this.users = this.userService.getUsers();

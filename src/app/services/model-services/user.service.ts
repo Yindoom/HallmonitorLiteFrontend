@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {ConnectionService} from '../connection.service';
 import {Observable} from 'rxjs';
-import {User} from '../../shared/models/user';
+import {User} from '../../shared/models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +23,7 @@ private apiUrl;
       .get<User>(this.apiUrl + '/' + id);
   }
 
-  createUser(user: User){
+  createUser(user: User) {
     return this.httpClient
       .post<User>(this.apiUrl, JSON.stringify(user));
   }
@@ -33,7 +33,7 @@ private apiUrl;
       .put<User>(this.apiUrl + '/' + user.id, JSON.stringify(user));
   }
 
-  deleteUser(user: User){
+  deleteUser(user: User) {
     return this.httpClient
       .delete<User>(this.apiUrl + '/' + user.id);
   }

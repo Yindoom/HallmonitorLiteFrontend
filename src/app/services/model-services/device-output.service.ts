@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {ConnectionService} from '../connection.service';
-import {DeviceOutput} from '../../shared/models/deviceOutput';
+import {DeviceOutput} from '../../shared/models/deviceOutput.model';
 import {Observable} from 'rxjs';
 
 @Injectable({
@@ -24,7 +24,7 @@ export class DeviceOutputService {
       .get<DeviceOutput>(this.apiUrl + '/' + id);
   }
 
-  createDeviceOutput(output: DeviceOutput){
+  createDeviceOutput(output: DeviceOutput) {
     return this.httpClient
       .post<DeviceOutput>(this.apiUrl, JSON.stringify(output));
   }
@@ -34,7 +34,7 @@ export class DeviceOutputService {
       .put<DeviceOutput>(this.apiUrl + '/' + output.id, JSON.stringify(output));
   }
 
-  deleteDeviceOutput(output: DeviceOutput){
+  deleteDeviceOutput(output: DeviceOutput) {
     return this.httpClient
       .delete<DeviceOutput>(this.apiUrl + '/' + output.id);
   }
