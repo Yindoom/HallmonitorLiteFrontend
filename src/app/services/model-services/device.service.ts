@@ -14,7 +14,7 @@ export class DeviceService {
               private connectionService: ConnectionService) {
     this.apiUrl = this.connectionService.getConnectionUrl() + 'device';}
 
-  getDevice(): Observable<Device[]> {
+  getDevices(): Observable<Device[]> {
     return this.httpClient
       .get<Device[]>(this.apiUrl);
   }

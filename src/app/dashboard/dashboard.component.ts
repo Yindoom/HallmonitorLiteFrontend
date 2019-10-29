@@ -3,6 +3,10 @@ import { SidenavService } from '../services/sidenav.service';
 import {DeviceOutputService} from '../services/model-services/device-output.service';
 import {Observable} from 'rxjs';
 import {DeviceOutput} from '../shared/models/deviceOutput';
+import {DeviceService} from '../services/model-services/device.service';
+import {Device} from '../shared/models/device';
+import {User} from '../shared/models/user';
+import {UserService} from '../services/model-services/user.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,9 +14,9 @@ import {DeviceOutput} from '../shared/models/deviceOutput';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  devices = ['apple', 'orange', 'pkfire', 'hm', 'apple', 'orange', 'pkfire', 'hm', 'apple', 'orange', 'pkfire', 'hm'];
-
+  devices: Observable<Device[]>;
   outputs: Observable<DeviceOutput[]>;
+  users: Observable<User[]>;
   hours = [
     1,
     2,
@@ -43,15 +47,21 @@ export class DashboardComponent implements OnInit {
   minutes = [0, 30];
 
   constructor(private navService: SidenavService,
-              private deviceOutputService: DeviceOutputService) { }
+              private deviceOutputService: DeviceOutputService,
+              private userService: UserService,
+              private deviceService: DeviceService) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.devices = this.deviceService.getDevices();
+  }
 
   toggleNav() {
     this.navService.toggleNav();
   }
 
   getDeviceOutputs(){
-    this.outputs = this.deviceOutputService.getDeviceOutputs();
+   // this.outputs = this.deviceOutputService.getDeviceOutputs();
+   // this.devices = this.deviceService.getDevices();
+    this.users = this.userService.getUsers();
   }
 }

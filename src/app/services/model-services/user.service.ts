@@ -13,7 +13,7 @@ private apiUrl;
               private connectionService: ConnectionService) {
     this.apiUrl = this.connectionService.getConnectionUrl() + 'user';
   }
-  getUser(): Observable<User[]> {
+  getUsers(): Observable<User[]> {
     return this.httpClient
       .get<User[]>(this.apiUrl);
   }
