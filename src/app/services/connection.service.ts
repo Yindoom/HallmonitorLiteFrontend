@@ -4,11 +4,10 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ConnectionService {
-
   private apiUrl = 'http://165.22.65.134:5000/';
-  constructor() { }
+  constructor() {}
 
-  getConnectionUrl(){
+  getConnectionUrl() {
     return this.apiUrl;
   }
 }

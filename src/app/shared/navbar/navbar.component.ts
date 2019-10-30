@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SidenavService } from 'src/app/services/sidenav.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -8,9 +10,14 @@ import { SidenavService } from 'src/app/services/sidenav.service';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(service: SidenavService) { }
+  constructor(private service: SidenavService, private router: Router) { }
 
   ngOnInit() {
   }
 
+  logout() {
+    localStorage.removeItem('token');
+    this.service.toggleNav();
+    this.router.navigate(['/login']);
+  }
 }

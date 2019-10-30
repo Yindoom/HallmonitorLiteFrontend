@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { LoginDTO } from '../shared/models/loginDTO.model';
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -13,12 +16,23 @@ export class LoginComponent implements OnInit {
     password: new FormControl('')
   });
 
-  constructor(private snackBar: MatSnackBar) {}
+  constructor(private snack: MatSnackBar, private router: Router, private service: AuthService) {}
 
   ngOnInit() {}
 
   login() {
-    console.log('good boy');
-    this.snackBar.open('FUck you', 'ok', {duration: 3000});
+    const dto: LoginDTO = this.loginForm.value;
+
+    this.service.login(dto).subscribe(token => {
+      localStorage.setItem('token', token.token);
+      this.openSnack('Welcome, ' + dto.username + ', here is your data');
+      this.router.navigate(['']);
+    }, error => {
+      this.openSnack('Wrong username or password')
+    });
+  }
+
+  openSnack(msg: string) {
+    this.snack.open(msg, 'Ok', { duration: 3000 });
   }
 }
