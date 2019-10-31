@@ -27,6 +27,7 @@
       </mat-option>
     </mat-select>
   </mat-form-field>
+
   <mat-form-field>
     <mat-select placeholder="Minutes">
       <mat-option *ngFor="let minute of minutes" [value]='minute'>
@@ -46,6 +47,7 @@
       </mat-option>
     </mat-select>
   </mat-form-field>
+
   <mat-form-field>
     <mat-select placeholder="Minutes">
       <mat-option *ngFor="let minute of minutes" [value]='minute'>
@@ -66,14 +68,15 @@
   </mat-selection-list>
 </div>
 
-<button (click)="getDeviceOutputs()">Get users</button>
-<div *ngIf="true">
+<button (click)="getTestingStuffMethod()">Get time interval outputs</button>
+<div *ngIf="true" class="TestingStuff">
   <ul>
-    <li *ngFor="let user of users | async">
+    <li *ngFor="let user of outputs | async">
       {{user.id}}
     </li>
   </ul>
 </div>
+
 <div>
   <app-bar-chart></app-bar-chart>
 </div>

@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {ConnectionService} from '../connection.service';
 import {DeviceOutput} from '../../shared/models/deviceOutput.model';
 import {Observable} from 'rxjs';
+import {DateInterval} from '../../shared/models/dateInterval';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,11 @@ export class DeviceOutputService {
   getDeviceOutputById(id: string): Observable<DeviceOutput> {
     return this.httpClient
       .get<DeviceOutput>(this.apiUrl + '/' + id);
+  }
+
+  getDeviceOutputByTimeInterval(dates: DateInterval): Observable<DeviceOutput[]> {
+    return this.httpClient
+      .post<DeviceOutput[]>(this.apiUrl + '/getbydate', dates);
   }
 
   createDeviceOutput(output: DeviceOutput) {

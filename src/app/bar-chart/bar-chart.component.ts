@@ -18,6 +18,7 @@ export class BarChartComponent implements OnInit {
   public barChartLegend = true;
   public barChartData = [
     { data: [], label: 'nr Of People' } // fill with nr. of ppl
+
     // {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'}
   ];
 
