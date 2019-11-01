@@ -4,17 +4,19 @@
 <br>
 
 <div id="timeChoosers">
+  <form [formGroup]="form">
   <mat-form-field>
-    <input matInput [matDatepicker]="picker1" placeholder="Choose a from date">
+    <input matInput [matDatepicker]="picker1" placeholder="Choose a from date" formControlName="fromDate">
     <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
     <mat-datepicker #picker1></mat-datepicker>
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput [matDatepicker]="picker2" placeholder="Choose a to date">
+    <input matInput [matDatepicker]="picker2" placeholder="Choose a to date" formControlName="toDate">
     <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
     <mat-datepicker #picker2></mat-datepicker>
   </mat-form-field>
+  </form>
 
   <br>
 

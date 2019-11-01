@@ -9,6 +9,7 @@ import {User} from '../shared/models/user.model';
 import {UserService} from '../services/model-services/user.service';
 import {DateInterval} from '../shared/models/dateInterval';
 import {DatePipe, getLocaleTimeFormat} from '@angular/common';
+import {FormControl, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,37 +19,18 @@ import {DatePipe, getLocaleTimeFormat} from '@angular/common';
 export class DashboardComponent implements OnInit {
   devices: Observable<Device[]>;
   outputs: Observable<DeviceOutput[]>;
-  users: Observable<User[]>;
+
   dates: DateInterval;
+
   from_date: Date;
   to_date: Date;
 
-  hours = [
-    1,
-    2,
-    3,
-    4,
-    5,
-    6,
-    7,
-    8,
-    9,
-    10,
-    11,
-    12,
-    13,
-    14,
-    15,
-    16,
-    17,
-    18,
-    19,
-    20,
-    21,
-    22,
-    23,
-    24
-  ];
+  form: FormGroup = new FormGroup({
+    fromDate: new FormControl(),
+    toDate: new FormControl()
+  });
+
+  hours = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24];
 
   minutes = [0, 30];
 
@@ -62,6 +44,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.devices = this.deviceService.getDevices();
+    this.dates = new DateInterval();
   }
 
   toggleNav() {
@@ -75,14 +58,14 @@ export class DashboardComponent implements OnInit {
   }
 
   getTestingStuffMethod() {
-    this.dates = new DateInterval();
-    //Date Thu Oct 31 2019 10:39:06 GMT+0100 (Central European Standard Time)
-    this.from_date = new Date("2019-10-10");
-    this.to_date = new Date("2019-10-25 13:10");
+    const dateForm = this.form.value;
+    console.log(this.format(dateForm.fromDate) + ' This is the date from the form :) ');
+
+    this.from_date = new Date(this.format(dateForm.fromDate));
+    this.to_date = new Date(this.format(dateForm.toDate));
+
     this.dates.from_date = this.from_date;
     this.dates.to_date = this.to_date;
-
-    console.log(new Date());
     this.outputs = this.deviceOutputService.getDeviceOutputByTimeInterval(this.dates);
   }
 }
