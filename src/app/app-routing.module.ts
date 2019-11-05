@@ -9,6 +9,7 @@ import { AuthGuard } from './guards/auth.guard';
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: '', component: DashboardComponent },
+  { path: 'dashboard/:fromDate/:toDate', component: DashboardComponent },
   { path: 'chart', component: BarChartComponent }
 ];
 

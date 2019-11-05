@@ -57,6 +57,8 @@
       </mat-option>
     </mat-select>
   </mat-form-field>
+ <br>
+  <button (click)="doDate()">Date</button>
 </div>
 
 <div id="deviceList">
@@ -73,8 +75,8 @@
 <button (click)="getTestingStuffMethod()">Get time interval outputs</button>
 <div *ngIf="true" class="TestingStuff">
   <ul>
-    <li *ngFor="let user of outputs | async">
-      {{user.id}}
+    <li *ngFor="let item of outputs | async">
+      {{item.id}}
     </li>
   </ul>
 </div>
