@@ -24,6 +24,8 @@ import { SidenavService } from './services/sidenav.service';
 import { HttpClientModule } from '@angular/common/http';
 import { BarChartComponent } from './bar-chart/bar-chart.component';
 import { ChartsModule } from 'ng2-charts';
+import { PDFExportModule } from '@progress/kendo-angular-pdf-export';
+
 
 @NgModule({
   declarations: [
@@ -52,7 +54,8 @@ import { ChartsModule } from 'ng2-charts';
     MatNativeDateModule,
     MatIconModule,
     HttpClientModule,
-    ChartsModule
+    ChartsModule,
+    PDFExportModule
   ],
   providers: [SidenavService],
   bootstrap: [AppComponent]
