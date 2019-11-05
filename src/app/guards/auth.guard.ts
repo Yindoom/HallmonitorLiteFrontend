@@ -14,6 +14,7 @@ import { AuthService } from '../services/auth.service';
 })
 export class AuthGuard implements CanActivate {
   canActivate() {
+    console.log(this.auth.isAdmin());
     if (this.auth.getToken()) {
       return true;
     } else {

@@ -1,0 +1,146 @@
+warning: LF will be replaced by CRLF in src/app/guards/auth.guard.ts.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in src/app/login/login.component.ts.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in src/app/services/auth.service.ts.
+The file will have its original line endings in your working directory
+[1mdiff --git a/package-lock.json b/package-lock.json[m
+[1mindex e338036..56b52af 100644[m
+[1m--- a/package-lock.json[m
+[1m+++ b/package-lock.json[m
+[36m@@ -6565,6 +6565,11 @@[m
+         "set-immediate-shim": "~1.0.1"[m
+       }[m
+     },[m
+[32m+[m[32m    "jwt-decode": {[m
+[32m+[m[32m      "version": "2.2.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/jwt-decode/-/jwt-decode-2.2.0.tgz",[m
+[32m+[m[32m      "integrity": "sha1-fYa9VmefWM5qhHBKZX3TkruoGnk="[m
+[32m+[m[32m    },[m
+     "karma": {[m
+       "version": "4.1.0",[m
+       "resolved": "https://registry.npmjs.org/karma/-/karma-4.1.0.tgz",[m
+[1mdiff --git a/package.json b/package.json[m
+[1mindex ed57c68..f4cd088 100644[m
+[1m--- a/package.json[m
+[1m+++ b/package.json[m
+[36m@@ -24,6 +24,7 @@[m
+     "@angular/router": "~8.2.11",[m
+     "chart.js": "^2.8.0",[m
+     "hammerjs": "^2.0.8",[m
+[32m+[m[32m    "jwt-decode": "^2.2.0",[m
+     "ng2-charts": "^2.3.0",[m
+     "rxjs": "~6.4.0",[m
+     "tslib": "^1.10.0",[m
+[1mdiff --git a/src/app/app-routing.module.ts b/src/app/app-routing.module.ts[m
+[1mindex 63a6074..3044f20 100644[m
+[1m--- a/src/app/app-routing.module.ts[m
+[1m+++ b/src/app/app-routing.module.ts[m
+[36m@@ -2,13 +2,12 @@[m [mimport { NgModule } from '@angular/core';[m
+ import { Routes, RouterModule } from '@angular/router';[m
+ import { LoginComponent } from './login/login.component';[m
+ import { DashboardComponent } from './dashboard/dashboard.component';[m
+[31m-import {BarChartComponent} from './bar-chart/bar-chart.component';[m
+[32m+[m[32mimport { BarChartComponent } from './bar-chart/bar-chart.component';[m
+ import { AuthGuard } from './guards/auth.guard';[m
+ [m
+[31m-[m
+ const routes: Routes = [[m
+   { path: 'login', component: LoginComponent },[m
+[31m-  { path: '', component: DashboardComponent },[m
+[32m+[m[32m  { path: '', component: DashboardComponent, canActivate: [AuthGuard] },[m
+   { path: 'chart', component: BarChartComponent }[m
+ ];[m
+ [m
+[36m@@ -16,4 +15,4 @@[m [mconst routes: Routes = [[m
+   imports: [RouterModule.forRoot(routes)],[m
+   exports: [RouterModule][m
+ })[m
+[31m-export class AppRoutingModule { }[m
+[32m+[m[32mexport class AppRoutingModule {}[m
+[1mdiff --git a/src/app/guards/auth.guard.ts b/src/app/guards/auth.guard.ts[m
+[1mindex e8c58a2..8dc2fcd 100644[m
+[1m--- a/src/app/guards/auth.guard.ts[m
+[1m+++ b/src/app/guards/auth.guard.ts[m
+[36m@@ -14,6 +14,7 @@[m [mimport { AuthService } from '../services/auth.service';[m
+ })[m
+ export class AuthGuard implements CanActivate {[m
+   canActivate() {[m
+[32m+[m[32m    console.log(this.auth.isAdmin());[m
+     if (this.auth.getToken()) {[m
+       return true;[m
+     } else {[m
+[1mdiff --git a/src/app/login/login.component.ts b/src/app/login/login.component.ts[m
+[1mindex 8c0f31f..2a5db67 100644[m
+[1m--- a/src/app/login/login.component.ts[m
+[1m+++ b/src/app/login/login.component.ts[m
+[36m@@ -24,7 +24,8 @@[m [mexport class LoginComponent implements OnInit {[m
+     const dto: LoginDTO = this.loginForm.value;[m
+ [m
+     this.service.login(dto).subscribe(token => {[m
+[31m-      localStorage.setItem('token', token.token);[m
+[32m+[m[32m      localStorage.setItem('access-token', token.access_token);[m
+[32m+[m[32m      localStorage.setItem('refresh-token', token.refresh_token)[m
+       this.openSnack('Welcome, ' + dto.username + ', here is your data');[m
+       this.router.navigate(['']);[m
+     }, error => {[m
+[1mdiff --git a/src/app/services/auth.service.ts b/src/app/services/auth.service.ts[m
+[1mindex 87d6532..3bb2660 100644[m
+[1m--- a/src/app/services/auth.service.ts[m
+[1m+++ b/src/app/services/auth.service.ts[m
+[36m@@ -1,8 +1,16 @@[m
+ import { Injectable } from '@angular/core';[m
+ import { ConnectionService } from './connection.service';[m
+[31m-import { HttpClient } from '@angular/common/http';[m
+[32m+[m[32mimport { HttpClient, HttpHeaders } from '@angular/common/http';[m
+ import { Observable } from 'rxjs';[m
+ import { LoginDTO } from '../shared/models/loginDTO.model';[m
+[32m+[m[32mimport decode from 'jwt-decode';[m
+[32m+[m
+[32m+[m[32mconst httpOptions = {[m
+[32m+[m[32m  headers: new HttpHeaders({[m
+[32m+[m[32m    'Content-Type': 'application/json',[m
+[32m+[m[32m    'Authorization': 'my-auth-token'[m
+[32m+[m[32m  })[m
+[32m+[m[32m};[m
+ [m
+ @Injectable({[m
+   providedIn: 'root'[m
+[36m@@ -10,16 +18,33 @@[m [mimport { LoginDTO } from '../shared/models/loginDTO.model';[m
+ export class AuthService {[m
+   constructor([m
+     private connection: ConnectionService,[m
+[31m-    private http: HttpClient[m
+[32m+[m[32m    private http: HttpClient,[m
+   ) {}[m
+ [m
+[31m-  apiUrl = this.connection.getConnectionUrl() + 'login';[m
+[32m+[m[32m  apiUrl = this.connection.getConnectionUrl();[m
+ [m
+   login(dto: LoginDTO): Observable<any> {[m
+[31m-    return this.http.post<any>(this.apiUrl, dto);[m
+[32m+[m
+[32m+[m[32m    return this.http.post<any>(this.apiUrl + 'login', dto);[m
+   }[m
+ [m
+   getToken() {[m
+[31m-    return localStorage.getItem('token');[m
+[32m+[m[32m    return localStorage.getItem('access-token');[m
+[32m+[m[32m  }[m
+[32m+[m
+[32m+[m[32m  refresh() {[m
+[32m+[m[32m    localStorage.removeItem('access-token');[m
+[32m+[m[32m    httpOptions.headers = httpOptions.headers.set('Authorization', 'Bearer '+ this.getToken())[m
+[32m+[m[32m    return this.http.get<any>(this.apiUrl + 'refresh', httpOptions);[m
+[32m+[m[32m  }[m
+[32m+[m
+[32m+[m[32m  isAdmin() {[m
+[32m+[m[32m    const token = localStorage.getItem('access-token');[m
+[32m+[m[32m    const decoded = decode(token);[m
+[32m+[m[32m    const role = decoded.user_claims['role'];[m
+[32m+[m[32m    debugger;[m
+[32m+[m[32m    const isAdmin = role === 'Admin'[m
+[32m+[m[32m    return(isAdmin);[m
+   }[m
+ }[m
+[41m+[m
