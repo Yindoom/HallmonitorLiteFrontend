@@ -24,6 +24,7 @@ import { SidenavService } from './services/sidenav.service';
 import { HttpClientModule } from '@angular/common/http';
 import { BarChartComponent } from './bar-chart/bar-chart.component';
 import { ChartsModule } from 'ng2-charts';
+import { DashboardViewComponent } from './dashboard/dashboard-view.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ChartsModule } from 'ng2-charts';
     FooterComponent,
     NavbarComponent,
     DashboardComponent,
-    BarChartComponent
+    BarChartComponent,
+    DashboardViewComponent
   ],
   imports: [
     BrowserModule,
