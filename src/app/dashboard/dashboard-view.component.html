@@ -6,13 +6,13 @@
 <div id="timeChoosers">
   <form [formGroup]="form">
     <mat-form-field>
-      <input matInput [matDatepicker]="picker1" placeholder="Choose a from date" formControlName="fromDate">
+      <input matInput [matDatepicker]="picker1" placeholder="Choose a from date" formControlName="from_date">
       <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
       <mat-datepicker #picker1></mat-datepicker>
     </mat-form-field>
 
     <mat-form-field>
-      <input matInput [matDatepicker]="picker2" placeholder="Choose a to date" formControlName="toDate">
+      <input matInput [matDatepicker]="picker2" placeholder="Choose a to date" formControlName="to_date">
       <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
       <mat-datepicker #picker2></mat-datepicker>
     </mat-form-field>
@@ -58,7 +58,7 @@
     </mat-select>
   </mat-form-field>
   <br>
-  <button (click)="doDate()">Date</button>
+  <button (click)="getDatesFromForm()">Save Changes</button>
 </div>
 
 <div id="deviceList">
@@ -70,17 +70,4 @@
       </div>
     </mat-list-option>
   </mat-selection-list>
-</div>
-
-<button (click)="getTestingStuffMethod()">Get time interval outputs</button>
-<div *ngIf="true" class="TestingStuff">
-  <ul>
-    <li *ngFor="let item of outputs | async">
-      {{item.id}}
-    </li>
-  </ul>
-</div>
-
-<div>
-  <app-bar-chart></app-bar-chart>
 </div>

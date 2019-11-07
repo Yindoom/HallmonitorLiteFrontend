@@ -22,7 +22,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatIconModule } from '@angular/material/icon';
 import { SidenavService } from './services/sidenav.service';
 import { HttpClientModule } from '@angular/common/http';
-import { BarChartComponent } from './bar-chart/bar-chart.component';
+import { BarChartComponent } from './dashboard/bar-chart/bar-chart.component';
 import { ChartsModule } from 'ng2-charts';
 import { DashboardViewComponent } from './dashboard/dashboard-view.component';
 import { PDFExportModule } from '@progress/kendo-angular-pdf-export';
