@@ -24,7 +24,12 @@ import { SidenavService } from './services/sidenav.service';
 import { HttpClientModule } from '@angular/common/http';
 import { BarChartComponent } from './bar-chart/bar-chart.component';
 import { ChartsModule } from 'ng2-charts';
+<<<<<<< HEAD
 import { DashboardViewComponent } from './dashboard/dashboard-view.component';
+=======
+import { PDFExportModule } from '@progress/kendo-angular-pdf-export';
+
+>>>>>>> 8bfeaa5b180664302f0de3e9abff10fead514913
 
 @NgModule({
   declarations: [
@@ -54,7 +59,8 @@ import { DashboardViewComponent } from './dashboard/dashboard-view.component';
     MatNativeDateModule,
     MatIconModule,
     HttpClientModule,
-    ChartsModule
+    ChartsModule,
+    PDFExportModule
   ],
   providers: [SidenavService],
   bootstrap: [AppComponent]
