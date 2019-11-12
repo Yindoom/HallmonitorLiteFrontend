@@ -26,6 +26,8 @@ import { BarChartComponent } from './dashboard/bar-chart/bar-chart.component';
 import { ChartsModule } from 'ng2-charts';
 import { DashboardViewComponent } from './dashboard/dashboard-view.component';
 import { PDFExportModule } from '@progress/kendo-angular-pdf-export';
+import { TableComponent } from './table/table.component';
+import { TableViewComponent } from './table/table-view.component';
 
 
 @NgModule({
@@ -36,7 +38,9 @@ import { PDFExportModule } from '@progress/kendo-angular-pdf-export';
     NavbarComponent,
     DashboardComponent,
     BarChartComponent,
-    DashboardViewComponent
+    DashboardViewComponent,
+    TableComponent,
+    TableViewComponent
   ],
   imports: [
     BrowserModule,

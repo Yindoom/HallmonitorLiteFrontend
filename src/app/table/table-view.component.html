@@ -1,0 +1,56 @@
+<div class="panel-body" align="center">
+
+  <table>
+    <thead style="background-color: #f2f2f2">
+    <tr role="row">
+      <th>
+        ID
+      </th>
+      <th>
+        nr of ppl
+      </th>
+      <th>
+        TimeStamp
+      </th>
+      <th>
+        Device id
+      </th>
+      <th>
+        CPU Temperature
+      </th>
+    </tr>
+    </thead>
+
+    <tbody *ngIf="itemList">
+    <tr *ngFor="let item of itemList | async"
+        id="drag" role="row">
+      <td class="clickable-row">
+        <div class="table-cell">
+          {{item.id}}
+        </div>
+      </td>
+      <td class="clickable-row">
+        <div class="table-cell">
+          {{item.number_of_people}}
+        </div>
+      </td>
+      <td class="clickable-row">
+        <div class="table-cell">
+          {{item.timestamp}}
+        </div>
+      </td>
+      <td class="clickable-row">
+        <div class="table-cell ">
+          {{item.device_id}}
+        </div>
+      </td>
+      <td class="clickable-row">
+        <div class="table-cell">
+          {{item.temperature}}
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+

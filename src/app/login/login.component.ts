@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
 
     this.service.login(dto).subscribe(token => {
       localStorage.setItem('access-token', token.access_token);
-      localStorage.setItem('refresh-token', token.refresh_token)
+      localStorage.setItem('refresh-token', token.refresh_token);
       this.openSnack('Welcome, ' + dto.username + ', here is your data');
       this.router.navigate(['']);
     }, error => {
