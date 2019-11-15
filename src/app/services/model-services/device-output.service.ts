@@ -22,7 +22,7 @@ export class DeviceOutputService {
 
   getDeviceOutputById(id: string): Observable<DeviceOutput> {
     return this.httpClient
-      .get<DeviceOutput>(this.apiUrl + '/' + id);
+      .get<DeviceOutput>(this.apiUrl + '?id=' + id);
   }
 
   getDeviceOutputByTimeInterval(dates: DateInterval): Observable<DeviceOutput[]> {

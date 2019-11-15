@@ -1,0 +1,11 @@
+<h2> List of Users </h2>
+
+<div>
+  <ul *ngFor="let user of userList | async">
+    <li>
+      {{user.id}} {{user.username}} {{user.role}}
+    </li>
+  </ul>
+</div>
+
+<hr>

@@ -1,0 +1,24 @@
+<p>user-create-view works!</p>
+
+<div class="createUser">
+  <form [formGroup]="createUserForm" (ngSubmit)="createUser()" class="form">
+    <mat-form-field>
+      <input matInput type="text" placeholder="EmailAddress" formControlName="emailAddress" class="formElement">
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <input matInput type="text" placeholder="Username" formControlName="username" class="formElement">
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <input matInput type="password" placeholder="Password" formControlName="password" class="formElement">
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <input matInput type="password" placeholder="Password" formControlName="passwordCheck" class="formElement">
+    </mat-form-field>
+    <br>
+    <button mat-button type="submit" class="formElement">Create User</button>
+  </form>
+</div>
+<hr>

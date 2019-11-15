@@ -1,0 +1,35 @@
+<p>user-detail-view works!</p>
+
+<div *ngIf="user">
+  <h1> {{user.id}} {{user.username}} {{user.email}} {{user.role}}</h1>
+</div>
+
+<div class="userDetail">
+  <form [formGroup]="userForm" (ngSubmit)="updateUser()" class="form">
+    <mat-form-field>
+      <input matInput type="text" placeholder="ID" formControlName="id" class="formElement" value="{{user.id}}">
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <input matInput type="text" placeholder="Role" formControlName="role" class="formElement" value="{{user.role}}">
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <input matInput type="text" placeholder="EmailAddress" formControlName="email" class="formElement" value="{{user.email}}">
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <input matInput type="text" placeholder="Username" formControlName="username" class="formElement" value="{{user.username}}">
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <input matInput type="password" placeholder="Password" formControlName="password" class="formElement">
+    </mat-form-field>
+    <br>
+
+
+    <button mat-button type="submit" class="formElement">Update User</button>
+    <button mat-button class="formElement" (click)="changePassword()">Change Password</button>
+  </form>
+</div>
+<hr>

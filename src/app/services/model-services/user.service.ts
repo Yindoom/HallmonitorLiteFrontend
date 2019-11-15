@@ -18,9 +18,9 @@ private apiUrl;
       .get<User[]>(this.apiUrl);
   }
 
-  getUserId(id: string): Observable<User> {
+  getUserById(id: string): Observable<User> {
     return this.httpClient
-      .get<User>(this.apiUrl + '/' + id);
+      .get<User>(this.apiUrl + '?id=' + id);
   }
 
   createUser(user: User) {

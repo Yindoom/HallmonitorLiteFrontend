@@ -28,6 +28,11 @@ import { DashboardViewComponent } from './dashboard/dashboard-view.component';
 import { PDFExportModule } from '@progress/kendo-angular-pdf-export';
 import { TableComponent } from './table/table.component';
 import { TableViewComponent } from './table/table-view.component';
+import { UserComponent } from './user/user.component';
+import { UserDetailViewComponent } from './user/user-detail-view/user-detail-view.component';
+import { UserListViewComponent } from './user/user-list-view/user-list-view.component';
+import { UserCreateComponent } from './user/user-create/user-create.component';
+import { UserCreateViewComponent } from './user/user-create/user-create-view.component';
 
 
 @NgModule({
@@ -40,7 +45,12 @@ import { TableViewComponent } from './table/table-view.component';
     BarChartComponent,
     DashboardViewComponent,
     TableComponent,
-    TableViewComponent
+    TableViewComponent,
+    UserComponent,
+    UserDetailViewComponent,
+    UserListViewComponent,
+    UserCreateComponent,
+    UserCreateViewComponent
   ],
   imports: [
     BrowserModule,
