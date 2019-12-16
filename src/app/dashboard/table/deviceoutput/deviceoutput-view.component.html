@@ -1,0 +1,24 @@
+<div>
+   <form [formGroup]="deviceForm" (ngSubmit)="submit()" class="form">
+      <mat-form-field>
+         <input matInput placeholder="Nr. People" type="number" formControlName="number_of_people" class="formElement">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+         <input matInput type="datetime" formControlName="timestamp" class="formElement" placeholder="Timestamp">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+         <input matInput placeholder="Temp." type="number" formControlName="temperature" class="formElement">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+         <input matInput placeholder="runtime" type="time" formControlName="runtime" class="formElement">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+         <input matInput placeholder="device id" type="number" formControlName="device_id" class="formElement">
+      </mat-form-field>
+      <button mat-button type="submit" class="formElement">Update/Create</button>
+   </form>
+</div>

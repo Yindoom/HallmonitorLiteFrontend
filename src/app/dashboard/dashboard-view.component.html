@@ -1,7 +1,3 @@
-<button mat-raised-button (click)="toggleNav()">
-  <mat-icon>menu_open</mat-icon>
-</button>
-<br>
 
 <div id="timeChoosers">
   <form [formGroup]="form">
@@ -71,3 +67,5 @@
     </mat-list-option>
   </mat-selection-list>
 </div>
+
+<button #toggle (click)="toggleTable()">Switch Chart</button>

@@ -9,12 +9,8 @@ import { SidenavService } from './services/sidenav.service';
 })
 export class AppComponent implements OnInit {
   title = 'HallmonitorLiteFrontend';
-
-  @ViewChild('sidenav', {static: true}) public sidenav: MatSidenav;
-
-  constructor(private sidenavService: SidenavService) {}
+  constructor() {}
 
   ngOnInit(): void {
-    this.sidenavService.setSidenav(this.sidenav);
   }
 }

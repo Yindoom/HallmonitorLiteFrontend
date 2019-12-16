@@ -26,8 +26,8 @@ import { BarChartComponent } from './dashboard/bar-chart/bar-chart.component';
 import { ChartsModule } from 'ng2-charts';
 import { DashboardViewComponent } from './dashboard/dashboard-view.component';
 import { PDFExportModule } from '@progress/kendo-angular-pdf-export';
-import { TableComponent } from './table/table.component';
-import { TableViewComponent } from './table/table-view.component';
+import { DeviceoutputViewComponent } from './dashboard/table/deviceoutput/deviceoutput-view.component';
+import { TableViewComponent } from './dashboard/table/table-view.component';
 
 
 @NgModule({
@@ -39,8 +39,9 @@ import { TableViewComponent } from './table/table-view.component';
     DashboardComponent,
     BarChartComponent,
     DashboardViewComponent,
-    TableComponent,
-    TableViewComponent
+    TableViewComponent,
+    DeviceoutputViewComponent,
+    
   ],
   imports: [
     BrowserModule,

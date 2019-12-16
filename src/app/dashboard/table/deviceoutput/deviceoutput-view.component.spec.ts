@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TableComponent } from './table.component';
+import { DeviceoutputViewComponent } from './deviceoutput-view.component';
 
-describe('TableComponent', () => {
-  let component: TableComponent;
-  let fixture: ComponentFixture<TableComponent>;
+describe('DeviceoutputViewComponent', () => {
+  let component: DeviceoutputViewComponent;
+  let fixture: ComponentFixture<DeviceoutputViewComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TableComponent ]
+      declarations: [ DeviceoutputViewComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TableComponent);
+    fixture = TestBed.createComponent(DeviceoutputViewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

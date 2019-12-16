@@ -1,30 +1,33 @@
-import {Component, OnInit} from '@angular/core';
-import {SidenavService} from '../services/sidenav.service';
-import {DeviceOutputService} from '../services/model-services/device-output.service';
-import {Observable} from 'rxjs';
-import {DeviceService} from '../services/model-services/device.service';
-import {Device} from '../shared/models/device.model';
-import {DateInterval} from '../shared/models/dateInterval';
-import {DatePipe} from '@angular/common';
-import {MatSnackBar} from '@angular/material';
+import { Component, OnInit } from "@angular/core";
+import { SidenavService } from "../services/sidenav.service";
+import { DeviceOutputService } from "../services/model-services/device-output.service";
+import { Observable } from "rxjs";
+import { DeviceService } from "../services/model-services/device.service";
+import { Device } from "../shared/models/device.model";
+import { DateInterval } from "../shared/models/dateInterval";
+import { DatePipe } from "@angular/common";
+import { MatSnackBar } from "@angular/material";
+import { DeviceOutput } from "../shared/models/deviceOutput.model";
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  selector: "app-dashboard",
+  templateUrl: "./dashboard.component.html",
+  styleUrls: ["./dashboard.component.scss"]
 })
 export class DashboardComponent implements OnInit {
   devices: Observable<Device[]>;
   barChartLabels = [];
-  barChartData = [
-    {data: [], label: 'nr Of People'}
-  ];
+  barChartData = [{ data: [], label: "nr Of People" }];
+  deviceOutputs: DeviceOutput[];
+  table = false;
+  output: DeviceOutput;
+  add = false;
 
   constructor(
     private navService: SidenavService,
     private deviceOutputService: DeviceOutputService,
     private deviceService: DeviceService,
-    private snackBar: MatSnackBar,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit() {
@@ -36,7 +39,11 @@ export class DashboardComponent implements OnInit {
   }
 
   openSnackBarWithMessage(snackBarMessage) {
-    this.snackBar.open(snackBarMessage.message, snackBarMessage.action, snackBarMessage.config);
+    this.snackBar.open(
+      snackBarMessage.message,
+      snackBarMessage.action,
+      snackBarMessage.config
+    );
   }
 
   /**
@@ -45,9 +52,9 @@ export class DashboardComponent implements OnInit {
    */
   format(toFormat: Date): Date {
     const datePipe = new DatePipe(navigator.language);
-    const dateFormat = 'yyyy-MM-dd';
+    const dateFormat = "yyyy-MM-dd";
     return new Date(datePipe.transform(toFormat, dateFormat));
- }
+  }
 
   /**
    * Get dates from form and get deviceOutputTimeInterval from db.
@@ -56,13 +63,35 @@ export class DashboardComponent implements OnInit {
   getDeviceOutputByTimeInterval(dates: DateInterval) {
     const dataArr = [];
     this.barChartLabels = [];
-    this.deviceOutputService.getDeviceOutputByTimeInterval(
-      { from_date: this.format(dates.from_date), to_date: this.format(dates.to_date) }).subscribe(values => {
-      values.forEach(output => {
-        this.barChartLabels.push(output.timestamp);
-        dataArr.push(output.number_of_people);
+    this.deviceOutputService
+      .getDeviceOutputByTimeInterval({
+        from_date: this.format(dates.from_date),
+        to_date: this.format(dates.to_date)
       })
+      .subscribe(values => {
+        debugger;
+        this.deviceOutputs = values;
+        values.forEach(output => {
+          this.barChartLabels.push(output.timestamp);
+          dataArr.push(output.number_of_people);
+        });
+      });
+    this.barChartData = [{ data: dataArr, label: "nr Of People" }];
+  }
+
+
+  toggleTable() {
+    this.table = !this.table;
+  }
+
+
+  setOutputUpdate(output) {
+    this.output = output;
+  }
+
+  updateOutput(output) {
+    this.deviceOutputService.updateDeviceOutput(output).subscribe(() => {
+      this.output = null;
     });
-    this.barChartData = [{data: dataArr, label: 'nr Of People'}];
   }
 }

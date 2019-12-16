@@ -32,6 +32,10 @@ export class AuthService {
     return localStorage.getItem('access-token');
   }
 
+  getRefreshToken() {
+    return localStorage.getItem('refresh-token');
+  }
+
   refresh() {
     localStorage.removeItem('access-token');
     httpOptions.headers = httpOptions.headers.set('Authorization', 'Bearer '+ this.getToken())
@@ -45,6 +49,14 @@ export class AuthService {
     debugger;
     const isAdmin = role === 'Admin'
     return(isAdmin);
+  }
+
+  getHttpOptions() {
+    httpOptions.headers = httpOptions.headers.set(
+      'Authorization',
+      'Bearer ' + this.getToken()
+    );
+    return httpOptions;
   }
 }
 

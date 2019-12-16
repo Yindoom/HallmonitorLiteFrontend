@@ -13,17 +13,17 @@ div {
 }
 
 #deviceList {
-  max-height: 225px;
-  overflow: scroll;
+  float: right;
 }
 
 #timeChoosers {
-  float: right;
+  float: left;
 }
 
 #timeChoosers, #deviceList {
   width: 45%;
-  height: 230px;
+  height: 25%;
+  min-height: 400;
   margin: 10px;
   border: 1px dotted #fd9fb3;
 }
@@ -54,3 +54,8 @@ div {
 .tooltip:hover .tooltiptext {
   visibility: visible;
 }
+
+#table {
+  text-align: center;
+}
+

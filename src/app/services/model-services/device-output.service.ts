@@ -22,7 +22,7 @@ export class DeviceOutputService {
 
   getDeviceOutputById(id: string): Observable<DeviceOutput> {
     return this.httpClient
-      .get<DeviceOutput>(this.apiUrl + '/' + id);
+      .get<DeviceOutput>(this.apiUrl + '?id=' + id);
   }
 
   getDeviceOutputByTimeInterval(dates: DateInterval): Observable<DeviceOutput[]> {
@@ -37,7 +37,7 @@ export class DeviceOutputService {
 
   updateDeviceOutput(output: DeviceOutput) {
     return this.httpClient
-      .put<DeviceOutput>(this.apiUrl + '/' + output.id, JSON.stringify(output));
+      .put<DeviceOutput>(this.apiUrl + '?id=' + output.id, output);
   }
 
   deleteDeviceOutput(output: DeviceOutput) {

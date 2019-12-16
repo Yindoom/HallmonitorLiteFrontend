@@ -21,32 +21,32 @@
     </tr>
     </thead>
 
-    <tbody *ngIf="itemList">
-    <tr *ngFor="let item of itemList | async"
-        id="drag" role="row">
+    <tbody *ngIf="deviceOutputs">
+    <tr *ngFor="let output of deviceOutputs"
+        id="drag" role="row" (click)="setOutput(output)">
       <td class="clickable-row">
         <div class="table-cell">
-          {{item.id}}
+          {{output.id}}
         </div>
       </td>
       <td class="clickable-row">
         <div class="table-cell">
-          {{item.number_of_people}}
+          {{output.number_of_people}}
         </div>
       </td>
       <td class="clickable-row">
         <div class="table-cell">
-          {{item.timestamp}}
+          {{output.timestamp}}
         </div>
       </td>
       <td class="clickable-row">
         <div class="table-cell ">
-          {{item.device_id}}
+          {{output.device_id}}
         </div>
       </td>
       <td class="clickable-row">
         <div class="table-cell">
-          {{item.temperature}}
+          {{output.temperature}}
         </div>
       </td>
     </tr>

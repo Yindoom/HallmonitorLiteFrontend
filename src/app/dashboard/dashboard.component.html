@@ -3,8 +3,21 @@
   (tryToggleNav)="toggleNav($event)"
   (tryOpenSnackBarWithMessage)="openSnackBarWithMessage($event)"
   (tryGetDeviceOutputByTimeInterval)="getDeviceOutputByTimeInterval($event)"
+  (tryToggleTable)="toggleTable($event)"
 ></app-dashboard-view>
-<app-bar-chart
+
+<app-deviceoutput-view [output]="output"
+
+(tryUpdateOutput)="updateOutput($event)"
+
+*ngIf="output || add">
+</app-deviceoutput-view>
+
+<app-bar-chart *ngIf="!table"
   [barChartLabels]="barChartLabels"
   [barChartData]="barChartData"
 ></app-bar-chart>
+
+<app-table-view *ngIf="table"
+(trySetOutputUpdate)="setOutputUpdate($event)"
+[deviceOutputs]="deviceOutputs"></app-table-view>
