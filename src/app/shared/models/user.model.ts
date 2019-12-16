@@ -3,6 +3,6 @@ export class User {
   user_group_id?: number;
   username: string;
   password?: string;
-  email_address?: string;
+  email?: string;
   role: string;
 }
